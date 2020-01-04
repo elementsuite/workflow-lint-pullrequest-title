@@ -1,17 +1,16 @@
-name: CI
+name: Pull Request Linter
 
-on: [push]
+on:
+  pull_request:
+    types: [opened, edited, reopened]
 
 jobs:
-  hello_world_job:
+  pr_lint_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to lint pull requests
     steps:
-    - name: Hello world action step
-      id: hello
+    - name: Action Step
+      id: PRLinter
       uses: Samuel1989/action-test@master
       with:
         who-to-greet: 'Mona the Octocat'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
