@@ -19,13 +19,14 @@ try {
   const pullRequest = github.context.issue;
   const title = payload.pull_request.title;
   const body = payload.pull_request.body;
+  const labels = payload.pull_request.labels;
 
-  let comment;
+  console.log("labels", labels);
+
   if (!new RegExp(titleRegex).test(title)) {
-    core.setFailed('Pull Request lint failed.');
     createReview(client, pullRequest, `Incorrect title format, regex for correct format is "${titleRegex}".`);
   }
 
 } catch (error) {
-  core.setFailed(error.message);
+  console.error(error.message);
 }
