@@ -7,7 +7,7 @@ try {
   //console.log(`Hello ${nameToGreet}!`);
   // Get the JSON webhook payload for the event that triggered the workflow
   const token = core.getInput('repo-token');
-  const client: github.GitHub = new github.GitHub(token);
+  const client = new github.GitHub(token);
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
   const title = payload.title;
