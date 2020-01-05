@@ -11,7 +11,7 @@ var createReview = function(client, pullRequest, comment) {
   });
 }
 
-var approveReview = function(client, pullRequest, comment) {
+var approveReview = function(client, pullRequest) {
   client.pulls.createReview({
     owner: pullRequest.owner,
     repo: pullRequest.repo,
@@ -56,6 +56,7 @@ try {
   }
 
   removeLabel(client, pullRequest, labelText);
+  approveReview(client, pullRequest);
 } catch (error) {
   console.error(error.message);
 }
