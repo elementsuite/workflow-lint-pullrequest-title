@@ -1,6 +1,16 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+var createReview = function(client, comment) {
+  client.pulls.createReview({
+    owner: pullRequest.owner,
+    repo: pullRequest.repo,
+    pull_number: pullRequest.number,
+    body: comment,
+    event: 'COMMENT'
+  });
+}
+
 try {
   const token = core.getInput('github-token');
   const titleRegex = core.getInput('title-regex');
@@ -12,20 +22,9 @@ try {
 
   let comment;
   if (!new RegExp(titleRegex).test(title)) {
-    comment = `Incorrect title format, regex for correct format is "${titleRegex}".`;
-  }
-
-  if (comment) {
-    client.pulls.createReview({
-      owner: pullRequest.owner,
-      repo: pullRequest.repo,
-      pull_number: pullRequest.number,
-      body: comment,
-      event: 'COMMENT'
-    });
     core.setFailed('Pull Request lint failed.');
+    createReview(`Incorrect title format, regex for correct format is "${titleRegex}".`);
   }
-
 
 } catch (error) {
   core.setFailed(error.message);
