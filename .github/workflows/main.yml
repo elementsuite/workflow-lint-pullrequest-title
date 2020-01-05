@@ -14,3 +14,4 @@ jobs:
       uses: Samuel1989/action-test@master
       with:
         who-to-greet: 'Mona the Octocat'
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
