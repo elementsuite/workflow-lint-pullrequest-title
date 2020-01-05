@@ -16,3 +16,4 @@ jobs:
         title-regex: '^(hr|engage|recruit|core|pay|work|perform|learn|analytics)\/(feature|fix)\/*(.+)$'
         body-regex: '^\*\*TASK ID\*\*\n\s-\s\d+\n\n\*\*DESCRIPTION\*\*\n\s-\s(.+)\n\n\*\*RESOLUTION\*\*\n\s-\s(.+)\n\n\*\*NEW\/CHANGED CONFIG ELEMENT \(YES\/NO\)\*\*\n\s-\s(YES|NO)$'
         github-token: "${{ secrets.GITHUB_TOKEN }}"
+        label-text: "Testing labels"

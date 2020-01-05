@@ -11,6 +11,24 @@ var createReview = function(client, pullRequest, comment) {
   });
 }
 
+var addLabel = function(client, pullRequest, label) {
+  client.issues.addLabels({
+    owner: pullRequest.owner,
+    repo: pullRequest.repo,
+    issue_number: pullRequest.number,
+    labels: [label]
+  });
+}
+
+var removeLabel = function(client, pullRequest, label) {
+  client.issues.removeLabels({
+    owner: pullRequest.owner,
+    repo: pullRequest.repo,
+    issue_number: pullRequest.number,
+    labels: [label]
+  });
+}
+
 try {
   const token = core.getInput('github-token');
   const titleRegex = core.getInput('title-regex');
@@ -22,18 +40,13 @@ try {
   const body = payload.pull_request.body;
   const labels = payload.pull_request.labels;
 
-  console.log("labels", labels);
-  client.issues.addLabels({
-    owner: pullRequest.owner,
-    repo: pullRequest.repo,
-    issue_number: pullRequest.number,
-    labels: ['Testing labels']
-  });
-
   if (!new RegExp(titleRegex).test(title)) {
     createReview(client, pullRequest, `Incorrect title format, regex for correct format is "${titleRegex}".`);
+    addLabel(client, pullRequest, labelText);
+    return;
   }
 
+  removeLabel(client, pullRequest, labelText);
 } catch (error) {
   console.error(error.message);
 }
