@@ -12,20 +12,20 @@ var createReview = function(client, pullRequest, comment) {
 }
 
 var addLabel = function(client, pullRequest, label) {
-  client.issues.addLabel({
-    owner: pullRequest.owner,
-    repo: pullRequest.repo,
-    issue_number: pullRequest.number,
-    name: label
-  });
-}
-
-var removeLabel = function(client, pullRequest, label) {
-  client.issues.removeLabels({
+  client.issues.addLabels({
     owner: pullRequest.owner,
     repo: pullRequest.repo,
     issue_number: pullRequest.number,
     labels: [label]
+  });
+}
+
+var removeLabel = function(client, pullRequest, label) {
+  client.issues.removeLabel({
+    owner: pullRequest.owner,
+    repo: pullRequest.repo,
+    issue_number: pullRequest.number,
+    labels: label
   });
 }
 
