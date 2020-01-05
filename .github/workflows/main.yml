@@ -2,7 +2,7 @@ name: Pull Request Linter
 
 on:
   pull_request:
-    types: [opened, edited, reopened]
+    types: ['opened', 'edited', 'reopened', 'synchronize']
 
 jobs:
   pr_lint_job:
