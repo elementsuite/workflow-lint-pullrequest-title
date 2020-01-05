@@ -1,4 +1,3 @@
-import {GitHub} from '@actions/github/lib/github';
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -8,7 +7,7 @@ try {
   //console.log(`Hello ${nameToGreet}!`);
   // Get the JSON webhook payload for the event that triggered the workflow
   const token = core.getInput('repo-token');
-  const client: GitHub = new GitHub(token);
+  const client: github.GitHub = new github.GitHub(token);
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
   const title = payload.title;
