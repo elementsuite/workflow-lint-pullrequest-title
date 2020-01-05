@@ -4,6 +4,7 @@ const github = require('@actions/github');
 try {
   const token = core.getInput('github-token');
   const titleRegex = core.getInput('title-regex');
+  const bodyRegex = core.getInput('body-regex');
   const client = new github.GitHub(token);
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
@@ -16,6 +17,10 @@ try {
   let comment;
   if (!new RegExp(titleRegex).test(title)) {
     comment = `Incorrect title format, regex for correct format is "${titleRegex}".`;
+  }
+
+  if (!new RegExp(bodyRegex).test(body)) {
+    comment = `Incorrect body format, regex for correct format is "${bodyRegex}".`;
   }
 
   if (comment) {
