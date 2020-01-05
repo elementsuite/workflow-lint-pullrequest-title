@@ -7,7 +7,16 @@ var createReview = function(client, pullRequest, comment) {
     repo: pullRequest.repo,
     pull_number: pullRequest.number,
     body: comment,
-    event: 'COMMENT'
+    event: 'REQUEST CHANGES'
+  });
+}
+
+var approveReview = function(client, pullRequest, comment) {
+  client.pulls.createReview({
+    owner: pullRequest.owner,
+    repo: pullRequest.repo,
+    pull_number: pullRequest.number,
+    event: 'APPROVE'
   });
 }
 
