@@ -19,9 +19,9 @@ try {
     comment = `Incorrect title format, regex for correct format is "${titleRegex}".`;
   }
 
-  /*if (!new RegExp(bodyRegex).test(body)) {
+  if (!new RegExp(bodyRegex).test(body)) {
     comment = `Incorrect body format, regex for correct format is "${bodyRegex}".`;
-  }*/
+  }
 
   if (comment) {
     client.pulls.createReview({
