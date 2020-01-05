@@ -46,7 +46,18 @@ try {
     return;
   }
 
-  removeLabel(client, pullRequest, labelText);
+  if (labels && labels.length) {
+    let rLabel;
+    for (var i = 0; i < labels.length; i++) {
+      var label = labels[i];
+      if (label.name == labelText) {
+        rLabel = label;
+        break;
+      }
+    }
+    removeLabel(client, pullRequest, rLabel);
+  }
+
 } catch (error) {
   console.error(error.message);
 }
