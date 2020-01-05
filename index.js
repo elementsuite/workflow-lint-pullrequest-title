@@ -26,7 +26,7 @@ try {
   client.issues.addLabels({
     owner: pullRequest.owner,
     repo: pullRequest.repo,
-    pull_number: pullRequest.number,
+    issue_number: pullRequest.number,
     labels: ['Testing labels']
   });
 
