@@ -14,8 +14,8 @@ try {
   console.log("body", body);
 
   let comment;
-  if (!new Regex(titleRegex).test(title)) {
-    comment = 'Incorrect title format, correct format is "{hr|engage|recruit|core|pay|work|perform|learn|analytics}/{feature|fix}/{description}".'
+  if (!new RegExp(titleRegex).test(title)) {
+    comment = `Incorrect title format, regex for correct format is "${titleRegex}".`;
   }
 
   if (comment) {
