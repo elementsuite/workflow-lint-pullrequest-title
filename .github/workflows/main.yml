@@ -13,5 +13,5 @@ jobs:
       id: PRLinter
       uses: Samuel1989/action-test@master
       with:
-        who-to-greet: 'Mona the Octocat'
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        title-regex: '^(hr|engage|recruit|core|pay|work|perform|learn|analytics)\/(feature|fix)\/*(.+)$'
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
