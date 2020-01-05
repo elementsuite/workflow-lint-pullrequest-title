@@ -23,7 +23,7 @@ try {
   let comment;
   if (!new RegExp(titleRegex).test(title)) {
     core.setFailed('Pull Request lint failed.');
-    createReview(`Incorrect title format, regex for correct format is "${titleRegex}".`);
+    createReview(client, `Incorrect title format, regex for correct format is "${titleRegex}".`);
   }
 
 } catch (error) {
