@@ -6,8 +6,8 @@ try {
   const client = new github.GitHub(token);
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
-  const title = payload.title;
-  const body = payload.body;
+  const title = payload.pull_request.title;
+  const body = payload.pull_request.body;
 
   console.log("title", title);
   console.log("body", body);
