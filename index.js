@@ -12,11 +12,11 @@ var createReview = function(client, pullRequest, comment) {
 }
 
 var addLabel = function(client, pullRequest, label) {
-  client.issues.addLabels({
+  client.issues.addLabel({
     owner: pullRequest.owner,
     repo: pullRequest.repo,
     issue_number: pullRequest.number,
-    labels: [label]
+    name: label
   });
 }
 
@@ -47,15 +47,15 @@ try {
   }
 
   if (labels && labels.length) {
-    let rLabel;
+    /*let rLabel;
     for (var i = 0; i < labels.length; i++) {
       var label = labels[i];
       if (label.name == labelText) {
         rLabel = label;
         break;
       }
-    }
-    removeLabel(client, pullRequest, rLabel);
+    }*/
+    removeLabel(client, pullRequest, labelText);
   }
 
 } catch (error) {
