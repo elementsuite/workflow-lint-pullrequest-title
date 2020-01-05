@@ -7,7 +7,7 @@ var createReview = function(client, pullRequest, comment) {
     repo: pullRequest.repo,
     pull_number: pullRequest.number,
     body: comment,
-    event: 'REQUEST'
+    event: 'CHANGE'
   });
 }
 
