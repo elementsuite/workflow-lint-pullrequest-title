@@ -1,5 +1,5 @@
 {
-  "name": "action-test",
+  "name": "pull-request-linter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Samuel1989/action-test.git"
+    "url": "git+https://github.com/Samuel1989/pull-request-linter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Samuel1989/action-test/issues"
+    "url": "https://github.com/Samuel1989/pull-request-linter/issues"
   },
-  "homepage": "https://github.com/Samuel1989/action-test#readme",
+  "homepage": "https://github.com/Samuel1989/pull-request-linter#readme",
   "dependencies": {
     "@actions/core": "^1.2.0",
     "@actions/github": "^2.0.0"

@@ -1,13 +1,10 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Pull Request Linter'
+description: 'An action to lint pull request titles'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  title-regex:
+    description: 'Regex used to lint pull request title'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: '.*'
 runs:
   using: 'node12'
   main: 'index.js'

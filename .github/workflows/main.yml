@@ -10,8 +10,8 @@ jobs:
     name: A job to lint pull requests
     steps:
     - name: Action Step
-      id: PRLinter
-      uses: Samuel1989/action-test@master
+      id: prlint
+      uses: Samuel1989/pull-request-linter@master
       with:
         title-regex: '^(hr|engage|recruit|core|pay|work|perform|learn|analytics)\/(feature|fix)\/*(.+)$'
         body-regex: '^\*\*TASK ID\*\*\n\s-\s\d+\n\n\*\*DESCRIPTION\*\*\n\s-\s(.+)\n\n\*\*RESOLUTION\*\*\n\s-\s(.+)\n\n\*\*NEW\/CHANGED CONFIG ELEMENT \(YES\/NO\)\*\*\n\s-\s(YES|NO)$'
