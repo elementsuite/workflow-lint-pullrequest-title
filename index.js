@@ -25,7 +25,7 @@ var removeLabel = function(client, pullRequest, label) {
     owner: pullRequest.owner,
     repo: pullRequest.repo,
     issue_number: pullRequest.number,
-    labels: label
+    name: label
   });
 }
 
