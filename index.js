@@ -1,23 +1,17 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-var createReview = function(client, pullRequest, comment) {
-  client.pulls.createReview({
+var addReview = function(client, pullRequest, event, comment) {
+  var review = {
     owner: pullRequest.owner,
     repo: pullRequest.repo,
     pull_number: pullRequest.number,
-    body: comment,
-    event: 'COMMENT'
-  });
-}
-
-var approveReview = function(client, pullRequest) {
-  client.pulls.createReview({
-    owner: pullRequest.owner,
-    repo: pullRequest.repo,
-    pull_number: pullRequest.number,
-    event: 'APPROVE'
-  });
+    event: event
+  };
+  if (comment) {
+    review.body = comment;
+  }
+  client.pulls.createReview(review);
 }
 
 var addLabel = function(client, pullRequest, label) {
@@ -42,6 +36,7 @@ try {
   const token = core.getInput('github-token');
   const titleRegex = core.getInput('title-regex');
   const labelText = core.getInput('label-text');
+  const titleFailedComment = core.getInput('title-failed-comment');
   const client = new github.GitHub(token);
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
@@ -50,13 +45,13 @@ try {
   const labels = payload.pull_request.labels;
 
   if (!new RegExp(titleRegex).test(title)) {
-    createReview(client, pullRequest, `Incorrect title format, regex for correct format is "${titleRegex}".`);
+    addReview(client, pullRequest, 'REQUEST_CHANGES', titleFailedComment.replace('%titleRegex%', titleRegex));
     addLabel(client, pullRequest, labelText);
     return;
   }
 
   removeLabel(client, pullRequest, labelText);
-  approveReview(client, pullRequest);
+  addReview(client, pullRequest, 'APPROVE');
 } catch (error) {
   console.error(error.message);
 }
