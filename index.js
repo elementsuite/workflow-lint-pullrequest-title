@@ -46,6 +46,8 @@ try {
   const body = payload.pull_request.body;
   const labels = payload.pull_request.labels;
 
+  console.log('labels', labels);
+
   if (!new RegExp(titleRegex, 'i').test(title)) {
     addReview(client, pullRequest, 'REQUEST_CHANGES', titleFailedComment.replace('%titleRegex%', titleRegex));
     addLabel(client, pullRequest, labelText);
