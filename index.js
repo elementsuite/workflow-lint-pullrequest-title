@@ -35,8 +35,10 @@ var removeLabel = function(client, pullRequest, label) {
 try {
   const token = core.getInput('github-token');
   const titleRegex = core.getInput('title-regex');
+  const labelRegex = core.getInput('label-regex');
   const labelText = core.getInput('label-text');
   const titleFailedComment = core.getInput('title-failed-comment');
+  const labelFailedComment = core.getInput('label-failed-comment');
   const client = new github.GitHub(token);
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
@@ -46,6 +48,27 @@ try {
 
   if (!new RegExp(titleRegex, 'i').test(title)) {
     addReview(client, pullRequest, 'REQUEST_CHANGES', titleFailedComment.replace('%titleRegex%', titleRegex));
+    addLabel(client, pullRequest, labelText);
+    return;
+  }
+
+  if (!labels.length) {
+    addReview(client, pullRequest, 'REQUEST_CHANGES', labelFailedComment);
+    addLabel(client, pullRequest, labelText);
+    return;
+  }
+
+  let hasRelease = false;
+  for (var i = 0; i < labels.length; i++) {
+    let label = labels[i];
+    if (new RegExp(labelRegex, 'i').test(label)) {
+      hasRelease = true;
+      break;
+    }
+  }
+
+  if (!hasRelease) {
+    addReview(client, pullRequest, 'REQUEST_CHANGES', labelFailedComment);
     addLabel(client, pullRequest, labelText);
     return;
   }
