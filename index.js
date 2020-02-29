@@ -46,8 +46,6 @@ try {
   const body = payload.pull_request.body;
   const labels = payload.pull_request.labels;
 
-  console.log('labels', labels);
-
   if (!new RegExp(titleRegex, 'i').test(title)) {
     addReview(client, pullRequest, 'REQUEST_CHANGES', titleFailedComment.replace('%titleRegex%', titleRegex));
     addLabel(client, pullRequest, labelText);
@@ -63,7 +61,7 @@ try {
   let hasRelease = false;
   for (var i = 0; i < labels.length; i++) {
     let label = labels[i];
-    if (new RegExp(labelRegex, 'i').test(label)) {
+    if (new RegExp(labelRegex, 'i').test(label.name)) {
       hasRelease = true;
       break;
     }
