@@ -73,6 +73,12 @@ try {
     return;
   }
 
+  if (!body) {
+    addReview(client, pullRequest, 'REQUEST_CHANGES', labelFailedBody);
+    addLabel(client, pullRequest, labelText);
+    return;
+  }
+
   removeLabel(client, pullRequest, labelText);
   addReview(client, pullRequest, 'APPROVE');
 } catch (error) {
