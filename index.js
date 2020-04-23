@@ -39,6 +39,7 @@ try {
   const labelText = core.getInput('label-text');
   const titleFailedComment = core.getInput('title-failed-comment');
   const labelFailedComment = core.getInput('label-failed-comment');
+  const labelFailedBody = core.getInput('label-failed-body');
   const client = new github.GitHub(token);
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
@@ -73,7 +74,7 @@ try {
     return;
   }
 
-  if (!body) {
+  if (!body && pullRequest.number > 3068) {
     addReview(client, pullRequest, 'REQUEST_CHANGES', labelFailedBody);
     addLabel(client, pullRequest, labelText);
     return;
