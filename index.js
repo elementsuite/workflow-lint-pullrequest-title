@@ -74,7 +74,11 @@ try {
     return;
   }
 
-  if (!body && pullRequest.number > 3068) {
+  let prChange = {
+    'elementsuite-application': 3068,
+    'elementsuite-clients': 2102
+  }
+  if (!body && pullRequest.number > prChange[pullRequest.repo]) {
     addReview(client, pullRequest, 'REQUEST_CHANGES', labelFailedBody);
     addLabel(client, pullRequest, labelText);
     return;
