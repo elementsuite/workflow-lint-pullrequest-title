@@ -52,7 +52,7 @@ try {
     addLabel(client, pullRequest, labelText);
     return;
   }
-
+/*
   if (!labels.length) {
     addReview(client, pullRequest, 'REQUEST_CHANGES', labelFailedComment);
     addLabel(client, pullRequest, labelText);
@@ -73,7 +73,7 @@ try {
     addLabel(client, pullRequest, labelText);
     return;
   }
-
+*/
   let prChange = {
     'elementsuite-application': 3068,
     'elementsuite-clients': 2102
