@@ -20,7 +20,7 @@ var addLabel = function(client, pullRequest, label) {
     repo: pullRequest.repo,
     issue_number: pullRequest.number,
     labels: [label]
-  });
+  }).catch(()=>{});
 }
 
 var removeLabel = function(client, pullRequest, label) {
@@ -29,7 +29,7 @@ var removeLabel = function(client, pullRequest, label) {
     repo: pullRequest.repo,
     issue_number: pullRequest.number,
     name: label
-  });
+  }).catch(()=>{});
 }
 
 try {
